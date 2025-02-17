@@ -10,6 +10,7 @@ function Book(title, author, pages, readStatus) {
 function addBookToLibrary(title, author, pages, readStatus) {
   let newBook = new Book(title, author, pages, readStatus);
   myLibrary.push(newBook);
+  return newBook;
 }
 //Sample pushes
 addBookToLibrary("Cosmos", "Carl Sagan", "365", "No");
@@ -40,7 +41,12 @@ document.getElementById("bookForm").addEventListener("submit", function(event) {
         alert("Please fill out all the fields.");
         return;
     }
+    const newBook = addBookToLibrary(title, author, pages, readStatus);
 
+    const libraryDisplay = document.createElement("h2");
+    libraryDisplay.textContent = `Title: ${newBook.title}, Author: ${newBook.author}, Pages: ${newBook.pages}, Read: ${newBook.readStatus}`;
+    const container = document.getElementById("libraryContainer");
+    container.appendChild(libraryDisplay);
 });
 
 
